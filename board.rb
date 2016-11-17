@@ -17,7 +17,15 @@ class Board
     tiles.shuffle!
 
     grid = []
-    size.times { grid << tiles.shift(size) }
+    size.times do |row|
+      row_array = []
+      size.times do |col|
+        tile = tiles.pop
+        tile.pos = [row, col]
+        row_array << tile
+      end
+      grid << row_array
+    end
     grid
   end
 
@@ -59,7 +67,18 @@ class Board
 
   def reveal(pos)
     self[pos].reveal!
+
+    if self[pos].value.zero?
+      tiles_to_reveal = adjacent_tiles(pos).reject do |tile|
+        tile.revealed? || tile.bomb?
+      end
+
+      tiles_to_reveal.each do |tile|
+        reveal(tile.pos)
+      end
+    end
   end
+
 
 
   def [](pos)

@@ -14,6 +14,14 @@ class Tile
     @reveal = true
   end
 
+  def revealed?
+    @reveal
+  end
+
+  def pos=(pos)
+    @pos = pos
+  end
+
   def to_s
     if !@reveal
       "_"

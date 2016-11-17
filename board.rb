@@ -57,13 +57,18 @@ class Board
     end
   end
 
+  def reveal(pos)
+    self[pos].reveal!
+  end
+
+
   def [](pos)
     row, col = pos
     @grid[row][col]
   end
 
   def valid_pos?(pos)
-    row , col = pos
+    row, col = pos
     row.between?(0, @size - 1) && col.between?(0, @size - 1)
   end
 end

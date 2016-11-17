@@ -7,15 +7,15 @@ class Tile
   end
 
   def bomb?
-  @value == :bomb
+    @value == :bomb
   end
 
-  def reveal
+  def reveal!
     @reveal = true
   end
 
   def to_s
-    if @value == 0
+    if !@reveal
       "_"
     elsif @value.is_a?(Integer)
       @value.to_s

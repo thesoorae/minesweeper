@@ -4,10 +4,21 @@ require 'byebug'
 class Board
   def initialize(size = 9)
     @size = size
-    @grid = Array.new(size) { Array.new(size) { Tile.new } }
+    @grid = seed_board(size)
+    set_values
   end
 
-  def seed_board
+  def seed_board(size)
+    num_bombs = size**2 / 7
+
+    tiles = Array.new(size**2) { Tile.new }
+    num_bombs.times { |i| tiles[i].value = :bomb }
+
+    tiles.shuffle!
+
+    grid = []
+    size.times { grid << tiles.shift(size) }
+    grid
   end
 
   def adjacent_tiles(pos)
@@ -24,8 +35,26 @@ class Board
         end
       end
     end
-
     adjacents
+  end
+
+  def set_value(pos)
+    tile = self[pos]
+    unless tile.bomb?
+      adjacents = adjacent_tiles(pos)
+      tile.value = adjacents.inject(0) do |sum, adjacent|
+        adjacent.bomb? ? sum + 1 : sum
+      end
+    end
+  end
+
+  def set_values
+    @size.times do |row|
+      @size.times do |col|
+        pos = [row, col]
+        set_value(pos)
+      end
+    end
   end
 
   def [](pos)

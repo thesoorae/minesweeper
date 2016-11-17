@@ -6,6 +6,10 @@ class Tile
     @reveal = false
   end
 
+  def bomb?
+  @value == :bomb
+  end
+
   def reveal
     @reveal = true
   end

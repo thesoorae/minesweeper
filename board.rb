@@ -79,7 +79,11 @@ class Board
     end
   end
 
-
+  def render
+    @grid.each do |row|
+      p row.map(&:to_s)
+    end
+  end
 
   def [](pos)
     row, col = pos

@@ -1,5 +1,5 @@
 class Tile
-  attr_accessor :value
+  attr_accessor :value, :pos
 
   def initialize
     @value = 0
@@ -16,10 +16,6 @@ class Tile
 
   def revealed?
     @reveal
-  end
-
-  def pos=(pos)
-    @pos = pos
   end
 
   def to_s

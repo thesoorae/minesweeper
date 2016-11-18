@@ -65,9 +65,10 @@ class Board
   end
 
   def reveal(pos)
-    self[pos].reveal!
 
-    if self[pos].value.zero?
+    self[pos].reveal! unless self[pos].flagged
+
+    if self[pos].value == 0
       tiles_to_reveal = adjacent_tiles(pos).reject do |tile|
         tile.revealed? || tile.bomb?
       end

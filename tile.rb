@@ -1,9 +1,10 @@
 class Tile
-  attr_accessor :value, :pos
+  attr_accessor :value, :pos, :flagged
 
   def initialize
     @value = 0
     @reveal = false
+    @flagged = false
   end
 
   def bomb?
@@ -18,8 +19,14 @@ class Tile
     @reveal
   end
 
+  def flag
+    @flagged = !@flagged
+  end
+
   def to_s
-    if !@reveal
+    if @flagged
+      "F"
+    elsif  !@reveal
       "_"
     elsif @value.is_a?(Integer)
       @value.to_s

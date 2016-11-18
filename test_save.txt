@@ -1,0 +1,67 @@
+--- !ruby/object:Board
+size: 3
+num_bombs: 1
+grid:
+- - !ruby/object:Tile
+    value: :bomb
+    reveal: false
+    flagged: false
+    pos:
+    - 0
+    - 0
+  - !ruby/object:Tile
+    value: 1
+    reveal: false
+    flagged: false
+    pos:
+    - 0
+    - 1
+  - !ruby/object:Tile
+    value: 0
+    reveal: false
+    flagged: false
+    pos:
+    - 0
+    - 2
+- - !ruby/object:Tile
+    value: 1
+    reveal: false
+    flagged: false
+    pos:
+    - 1
+    - 0
+  - !ruby/object:Tile
+    value: 1
+    reveal: false
+    flagged: false
+    pos:
+    - 1
+    - 1
+  - !ruby/object:Tile
+    value: 0
+    reveal: false
+    flagged: false
+    pos:
+    - 1
+    - 2
+- - !ruby/object:Tile
+    value: 0
+    reveal: false
+    flagged: false
+    pos:
+    - 2
+    - 0
+  - !ruby/object:Tile
+    value: 0
+    reveal: false
+    flagged: false
+    pos:
+    - 2
+    - 1
+  - !ruby/object:Tile
+    value: 0
+    reveal: false
+    flagged: false
+    pos:
+    - 2
+    - 2

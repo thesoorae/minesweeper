@@ -4,15 +4,14 @@ require 'byebug'
 class Board
   def initialize(size = 9)
     @size = size
+    @num_bombs = size**2 / 7
     @grid = seed_board(size)
     set_values
   end
 
   def seed_board(size)
-    num_bombs = size**2 / 7
-
     tiles = Array.new(size**2) { Tile.new }
-    num_bombs.times { |i| tiles[i].value = :bomb }
+    @num_bombs.times { |i| tiles[i].value = :bomb }
 
     tiles.shuffle!
 
@@ -83,6 +82,11 @@ class Board
     @grid.each do |row|
       p row.map(&:to_s)
     end
+  end
+
+  def won?
+    hidden_tiles = @grid.flatten.reject { |tile| tile.revealed? }
+    hidden_tiles.size == @num_bombs
   end
 
   def [](pos)

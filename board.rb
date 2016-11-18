@@ -89,6 +89,12 @@ class Board
     hidden_tiles.size == @num_bombs
   end
 
+  def reveal_all
+    @grid.flatten.map do |tile|
+      tile.reveal!
+    end
+  end
+
   def [](pos)
     row, col = pos
     @grid[row][col]

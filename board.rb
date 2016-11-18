@@ -70,7 +70,7 @@ class Board
 
     if self[pos].value == 0
       tiles_to_reveal = adjacent_tiles(pos).reject do |tile|
-        tile.revealed? || tile.bomb?
+        tile.revealed?
       end
 
       tiles_to_reveal.each do |tile|
